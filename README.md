@@ -39,5 +39,11 @@ https://lteboost.com/
 https://airproxy.io/en/
 https://thesocialproxy.com/
 https://ltesocks.io/
+!! amaing designs:
+https://thesocialproxy.com/
+https://soax.com/proxies/mobile
 
+
+_ good assets:
+https://brightdata.com/proxy-types/mobile-proxies
  -->
