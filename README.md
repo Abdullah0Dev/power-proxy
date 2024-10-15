@@ -46,4 +46,7 @@ https://soax.com/proxies/mobile
 
 _ good assets:
 https://brightdata.com/proxy-types/mobile-proxies
+___>
+Pricing packages:
+1 day package, 1 week and 1 month
  -->
