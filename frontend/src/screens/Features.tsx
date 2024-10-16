@@ -23,8 +23,7 @@ const Features = () => {
 
       {/* feature item */}
       {featureItemData.map((item, index) => (
-        <FeatureItem
-          btnColor={item.btnColor}
+        <FeatureItem 
           title={item.title}
           desc={item.desc}
           image={item.image}
