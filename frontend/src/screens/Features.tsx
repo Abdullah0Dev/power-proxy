@@ -1,20 +1,18 @@
-import React from "react";
+import { ReactNode } from "react";
 import {
   captcha,
-  ccpa, 
+  ccpa,
   gdpr,
   highSpeed,
   ipRotation,
   iso,
   mobileProxies,
-} from "../assets"; 
+} from "../assets";
 import FeatureItem from "../components/FeatureItem";
 import Section from "../components/Section";
 import Heading from "../components/Heading";
 
-type Props = {};
-
-const Features = (props: Props) => {
+const Features = () => {
   return (
     // <div className="min-h-screen pb-9 relative">
     <Section className="overflow-hidden" id="features">
@@ -44,10 +42,7 @@ export default Features;
 interface featureItemProps {
   image?: string;
   title?: string;
-  divForMulti?: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  >;
+  divForMulti?: ReactNode;
   multiImg?: boolean;
   desc?: string;
   btnColor?: string;

@@ -1,5 +1,5 @@
 import Section from "../components/Section";
-import { gradient1, gradient2, smallSphere, stars } from "../assets";
+import { gradient2, stars } from "../assets";
 import Heading from "../components/Heading";
 import PricingList from "../components/PricingList";
 import { LeftLine, RightLine } from "../components/design/Pricing";

@@ -4,14 +4,12 @@ import CompanyLogos from "../components/CompanyLogos";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import CustomButton from "../components/CustomButton";
 
-type Props = {};
-
-const Hero = (props: Props) => {
+const Hero = () => {
   return (
     <>
       <div className="relative flex justify-between py-9 px-9 items-center max-md:flex-col max-md:px-0 ">
         {/* Awesome gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-pink-500 to-green-500 opacity-20 blur-2xl z-0" /> 
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-pink-500 to-green-500 opacity-20 blur-2xl z-0" />
 
         {/* Content on top of gradient */}
         <div className="relative z-10 pt-16 head-text w-3/5 text-white">

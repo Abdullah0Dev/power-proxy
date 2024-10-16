@@ -1,4 +1,12 @@
-import { FAQ, Features, Footer, Hero, Navbar, Pricing, Testimonials } from "./screens";
+import {
+  FAQ,
+  Features,
+  Footer,
+  Hero,
+  Navbar,
+  Pricing,
+  Testimonials,
+} from "./screens";
 // import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -26,5 +34,5 @@ const App = () => {
       </Routes>
     </Router>
   );
-}; 
+};
 export default App;

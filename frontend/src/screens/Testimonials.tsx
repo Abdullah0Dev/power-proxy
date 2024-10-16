@@ -2,20 +2,20 @@ import { star } from "../assets/index.js";
 import Heading from "../components/Heading";
 import Section from "../components/Section";
 import { clientReviews } from "../constants/index.js";
-import { memo } from "react"; 
+import { memo } from "react";
 import { motion } from "framer-motion"; // Import motion
 
 const Testimonials = () => {
   // Define animations
   const reviewVariants = {
     hidden: {
-      opacity: 0, 
+      opacity: 0,
       y: 50, // Start lower
       scale: 0.9, // Slightly smaller
       rotate: 5, // Slight rotation for effect
     },
     visible: {
-      opacity: 1, 
+      opacity: 1,
       y: 0, // Move to original position
       scale: 1, // Scale to normal size
       rotate: 0, // No rotation
@@ -40,11 +40,11 @@ const Testimonials = () => {
             initial="hidden" // Initial animation state
             animate="visible" // Animation state on mount
             exit="exit" // Animation state on unmount
-            transition={{ 
+            transition={{
               duration: 0.5, // Transition duration
               delay: index * 0.3, // Delay based on index for sequential effect
               ease: "easeOut", // Smooth easing for a nice effect
-            }} 
+            }}
           >
             <div>
               <p className="text-white-800 font-light">{item.review}</p>

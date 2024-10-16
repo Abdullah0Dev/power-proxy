@@ -1,10 +1,17 @@
-import SectionSvg from "../components/svg/SectionSvg";
+import React, { ReactNode } from "react";
 
-const Section = ({
+type SectionProps = {
+  className?: string;
+  id?: string;
+  crosses?: string;
+  crossesOffset?: string;
+  customPaddings?: string;
+  children: ReactNode;
+};
+const Section: React.FC<SectionProps> = ({
   className,
   id,
   crosses,
-  crossesOffset,
   customPaddings,
   children,
 }) => {

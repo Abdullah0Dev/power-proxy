@@ -1,6 +1,11 @@
 import TagLine from "./Tagline";
-
-const Heading = ({ className, title, text, tag }) => {
+type HeadingType = {
+  className?: string;
+  title: string;
+  text?: string;
+  tag: string;
+}
+const Heading: React.FC<HeadingType> = ({ className, title, text, tag }) => {
   return (
     <div
       className={`${className} max-w-  justify-center flex flex-col items-center mb-12 lg:mb-20 md:text-center`}

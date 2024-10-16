@@ -21,7 +21,7 @@ import exit from "./close.svg";
 import smallSphere from "./4-small.png";
 import gradient1 from "./gradient-1.png";
 import gradient2 from "./gradient-2.png";
-import profile from './client-0.jpg'
+import profile from "./client-0.jpg";
 export {
   captcha,
   loadingImg,
@@ -46,5 +46,5 @@ export {
   smallSphere,
   gradient1,
   gradient2,
-  profile
+  profile,
 };

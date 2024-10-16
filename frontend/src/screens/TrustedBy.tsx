@@ -1,8 +1,5 @@
-import React from 'react'
-
-type Props = {}
-
-const TrustedBy = (props: Props) => {
+ 
+const TrustedBy = () => {
   return (
     <div>TrustedBy</div>
   )
