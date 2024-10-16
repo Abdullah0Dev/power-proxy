@@ -15,7 +15,7 @@ import menu from "./menu.svg";
 import stars from "./stars.svg";
 import star from "./star.png";
 import lines from "./lines.svg";
-import down from "./Down.png";
+import down from "./down.png";
 import check from "./check.svg";
 import exit from "./close.svg";
 import smallSphere from "./4-small.png";
