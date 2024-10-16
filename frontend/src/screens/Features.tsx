@@ -1,17 +1,26 @@
 import React from "react";
-import { captcha, ccpa, featureBg, gdpr, highSpeed, ipRotation, iso, mobileProxies } from "../assets";
-import CustomButton from "../components/CustomButton"; 
+import {
+  captcha,
+  ccpa, 
+  gdpr,
+  highSpeed,
+  ipRotation,
+  iso,
+  mobileProxies,
+} from "../assets"; 
 import FeatureItem from "../components/FeatureItem";
+import Section from "../components/Section";
+import Heading from "../components/Heading";
 
 type Props = {};
 
 const Features = (props: Props) => {
   return (
-    <div className="min-h-screen relative">
+    // <div className="min-h-screen pb-9 relative">
+    <Section className="overflow-hidden" id="features">
       <div className="absolute  inset-0 bg-gradient-to-r from-blue-500 via-pink-500 to-green-500 opacity-5 blur-2xl z-0" />
       <div className="headlines text-center">
-        <h1 className="head-text text-black text-center">Features</h1>
-        <h4 className="subhead-text">What do we offer for you guys!</h4>
+        <Heading tag="Features" title="What do we offer for you guys!" />
       </div>
 
       {/* feature item */}
@@ -26,7 +35,7 @@ const Features = (props: Props) => {
           right={index % 2 === 0}
         />
       ))}
-    </div>
+    </Section>
   );
 };
 
@@ -55,7 +64,7 @@ const featureItemData: featureItemProps[] = [
     divForMulti: (
       <div className="flex  justify-center">
         <img src={ccpa} alt="CCPA Compliance" />
-        <img src={iso}  className="-mt-20" alt="ISO Certification" />
+        <img src={iso} className="-mt-20" alt="ISO Certification" />
         <img src={gdpr} alt="GDPR Compliance" />
       </div>
     ),
@@ -73,7 +82,7 @@ const featureItemData: featureItemProps[] = [
     multiImg: true,
     divForMulti: (
       <div className="flex  justify-center">
-        <img src={highSpeed} className="w-60 object-contain" alt="high speed" /> 
+        <img src={highSpeed} className="w-60 object-contain" alt="high speed" />
       </div>
     ),
     title: "99.5% Success Rate for Maximum Reliability",

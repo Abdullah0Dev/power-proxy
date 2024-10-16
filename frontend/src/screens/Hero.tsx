@@ -9,7 +9,7 @@ type Props = {};
 const Hero = (props: Props) => {
   return (
     <>
-      <div className="relative flex justify-between py-9 px-9 items-center">
+      <div className="relative flex justify-between py-9 px-9 items-center max-md:flex-col max-md:px-0 ">
         {/* Awesome gradient background */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-pink-500 to-green-500 opacity-20 blur-2xl z-0" /> 
 
@@ -62,7 +62,7 @@ const Hero = (props: Props) => {
             </CustomButton>
           </div>
         </div>
-        <div className="relative z-10">
+        <div className="relative max-lg:w-2/5 max-sm:w-full z-10">
           <img src={g5Proxy} alt="hero-image" />
         </div>
       </div>

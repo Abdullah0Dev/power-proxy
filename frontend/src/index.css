@@ -21,7 +21,7 @@
   }
 
   .head-text {
-    @apply sm:text-4xl text-3xl font-bold ;
+    @apply max-sm:text-2xl text-3xl font-bold ;
   }
   .subhead-text {
     @apply sm:text-lg text-base text-WHITE-400 font-bold ;

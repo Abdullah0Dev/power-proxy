@@ -1,14 +1,18 @@
-import { Features, Hero, Navbar } from "./screens";
+import { FAQ, Features, Footer, Hero, Navbar, Pricing, Testimonials } from "./screens";
 // import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <main className="min-h-screen bg-black max-lg:px-9">
-      <div className="  max-w-screen-2xl mx-auto px-4">
+    <main className="min-h-screen bg- black ">
+      <div className="  max-w-screen-2xl mx-auto ">
         <Navbar />
         <Hero />
         <Features />
+        <Pricing />
+        <Testimonials />
+        <FAQ />
+        <Footer />
       </div>
     </main>
   );

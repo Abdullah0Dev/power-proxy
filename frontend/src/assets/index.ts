@@ -12,8 +12,16 @@ import captcha from "./captcha.png";
 import highSpeed from "./high-speed.png";
 import ipRotation from "./roation_ip.png";
 import menu from "./menu.svg";
+import stars from "./stars.svg";
+import star from "./star.png";
+import lines from "./lines.svg";
+import down from "./Down.png";
+import check from "./check.svg";
 import exit from "./close.svg";
-
+import smallSphere from "./4-small.png";
+import gradient1 from "./gradient-1.png";
+import gradient2 from "./gradient-2.png";
+import profile from './client-0.jpg'
 export {
   captcha,
   loadingImg,
@@ -22,12 +30,21 @@ export {
   g5Proxy,
   frame,
   yourLogo,
+  down,
   featureBg,
   iso,
   gdpr,
+  star,
   ccpa,
   highSpeed,
   ipRotation,
   menu,
   exit,
+  check,
+  lines,
+  stars,
+  smallSphere,
+  gradient1,
+  gradient2,
+  profile
 };
