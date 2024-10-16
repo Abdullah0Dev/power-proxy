@@ -1,4 +1,9 @@
-const ButtonSvg = (white) => (
+import React from "react";
+
+type ButtonSvgType = {
+  white: boolean;
+}
+const ButtonSvg: React.FC<ButtonSvgType> = (white) => (
     <>
       <svg
         className="absolute top-0 left-0"
