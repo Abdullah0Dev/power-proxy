@@ -124,22 +124,27 @@ app.get("/connection-results/:imei", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// show status json -> Show External IP -> Model, Device -> SIM, Carrier	-> NICK -> IMEI -> Net Mode	-> Modem IP	-> 
-app.get("/show-status", async (req, res) => {
+// show status json -> Show External IP -> Model, Device -> SIM, Carrier	-> NICK -> IMEI -> Net Mode	-> Modem IP	->
+app.get("/show-user-info", async (req, res) => {
   try {
     const statusJson = await showStatus();
-
-    res.json(statusJson);
+    const activePort = await listActivePorts();
+    res.json({ userStatus: statusJson, activeUserInfo: activePort });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-// Ports -> http: socks -> Show http and socks5 details -> Show remaining time left of purchase
-/*
-معلهش ي باش مهندس هتعمل "buttons for telegram & mail in contact support page"
-mail: Info@powergram.nl
-telegram link:  https://t.me/Your_plug
+/* ان شاء الله هتعمل ال "API integration" بالروتس دوله:
+from this route you'll get: imei, http, socks ports, password, and so many things... -> GET method
+ you can see its example DATA:  active_port.json
+ https://powerproxy.onrender.com/show-port-info
+ from this route you'll get: CurrentNetworkType, EXT_IP, CELLOP, IS_ONLINE, -> GET method - example data: status
+ https://powerproxy.onrender.com/show-status
+ 
+ then will have more functionlaity like 
+
 */
+// Ports -> http: socks -> Show http and socks5 details -> Show remaining time left of purchase
 app.get("/show-port-info", async (req, res) => {
   try {
     const activePort = await listActivePorts();
