@@ -4,7 +4,7 @@ const {
   assignFreeProxy,
   rotateIP,
   getBandwidthUsage,
-  getOvpnSettings,
+  downloadVPNProfile,
   getSpeedTest,
   sendSMS,
   logIpRotation,
@@ -13,6 +13,7 @@ const {
   updateCredentials,
   showStatus,
   listActivePorts,
+  editCredentials,
 } = require("./proxyService");
 
 // Load environment variables
@@ -154,18 +155,14 @@ app.get("/show-port-info", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// Read SMS
-app.post("change-credentials", async (req, res) => {
+// Change credentials
+app.post("/credentials/:portId", async (req, res) => {
   try {
-    const { proxyId, newUsername, newPassword } = req.body;
+    const portId = req.params.portId;
+    const { newUsername, newPassword } = req.body;
 
-    const updateUserCredentials = await updateCredentials(
-      proxyId,
-      newUsername,
-      newPassword
-    );
-
-    res.json(updateUserCredentials);
+    const result = await updateCredentials(portId, newUsername, newPassword);
+    res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -204,11 +201,21 @@ app.post("/send-sms", async (req, res) => {
 }
   */
 });
-
-app.get("/ovpn/:proxyId", async (req, res) => {
+// download ovpn profile
+app.get("/ovpn/:portId", async (req, res) => {
   try {
-    const proxyId = req.params.proxyId;
-    const ovpnLink = await getOvpnSettings(proxyId);
+    const portId = req.params.portId;
+    const ovpnLink = await downloadVPNProfile(portId);
+    res.json({ downloadUrl: ovpnLink });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// download ovpn profile
+app.post("/edit-credentials/:portId", async (req, res) => {
+  try {
+    const portId = req.params.portId;
+    const ovpnLink = await editCredentials(portId);
     res.json({ downloadUrl: ovpnLink });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -230,3 +237,5 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
   });
+
+// 0:50 + 1:09 + 2:05 + 1:57 + 1:28

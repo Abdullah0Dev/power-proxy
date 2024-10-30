@@ -1,6 +1,8 @@
 require("dotenv").config();
 const axios = require("axios");
+const { json } = require("body-parser");
 const { MongoClient, ObjectId } = require("mongodb");
+const qs = require("qs"); // To format data for 'application/x-www-form-urlencoded'
 
 // ProxySmart API Credentials
 const PROXY_SMART_API_BASE_URL = "http://188.245.37.125:7016";
@@ -168,18 +170,33 @@ const readSMS = async (imei) => {
 };
 
 // Download OVPN settings for a proxy
-const getOvpnSettings = async (proxyId) => {
+const downloadVPNProfile = async (portId) => {
   try {
-    const response = await axios.get(
-      `${PROXY_SMART_API_BASE_URL}/ovpn/${proxyId}`,
-      proxySmartAuth
-    );
-    return response.data;
+    const response = `${PROXY_SMART_API_BASE_URL}/get_vpn_profile/${portId}.ovpn`;
+    // http://188.245.37.125:7016/get_vpn_profile/portw7VwiCvS.ovpn
+    return response;
   } catch (error) {
-    console.error("Error fetching OVPN settings:", error);
-    throw new Error("Failed to fetch OVPN settings");
+    console.error("Error downloading VPN profile", error);
+    throw new Error("Failed to download  VPN profile");
   }
 };
+// Edit credentials
+const editCredentials = async (portId) => {
+  try {
+    const response = await axios.post(
+      `${PROXY_SMART_API_BASE_URL}/conf/edit_port/${portId}?redirect=main`,
+      proxySmartAuth
+    );
+    // http://188.245.37.125:7016/get_vpn_profile/portw7VwiCvS.ovpn
+    return response;
+  } catch (error) {
+    console.error("Error downloading VPN profile", error);
+    throw new Error("Failed to download  VPN profile");
+  }
+};
+// http://188.245.37.125:7016/conf/edit_port/portw7VwiCvS  ?redirect=main
+// http://188.245.37.125:7016/conf/edit_port/portw7VwiCvS?redirect=main
+
 const getSpeedTest = async (ipAddress, port, imei, username, password) => {
   try {
     // http://188.245.37.125:7016/modem/speedtest/352733105770960
@@ -199,21 +216,64 @@ const getSpeedTest = async (ipAddress, port, imei, username, password) => {
   }
 };
 
-// Update username and password for a proxy
-const updateCredentials = async (proxyId, newUsername, newPassword) => {
+const updateCredentials = async (portId, newUsername, newPassword) => {
   try {
-    const response = await axios.put(
-      `${PROXY_SMART_API_BASE_URL}/credentials/${proxyId}`,
-      { username: newUsername, password: newPassword },
-      proxySmartAuth
+    const url = `${PROXY_SMART_API_BASE_URL}/conf/edit_port/${portId}?redirect=main`;
+    const data = qs.stringify({
+      username: newUsername,
+      password: newPassword,
+    });
+    /* 
+    {
+      "portID": "portO",
+      "IMEI": "862329041087719",
+      "portName": "PEPA",
+      "http_port": "8005",
+      "socks_port": "5005",
+      "proxy_login": "kileq",
+      "proxy_password": "Jdh27dh"
+    }
+*/
+    console.log("Request URL:", url);
+    console.log("Request Data:", data);
+
+    const response = await axios.post(
+      url,
+      {
+        portID: portId,
+        IMEI: "860191063677385",
+        portName: "nosy_harmonize",
+        http_port: "8004",
+        socks_port: "5004",
+        proxy_login: "abdullah",
+        proxy_password: "server",
+      },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        ...proxySmartAuth,
+      }
     );
-    return response.data;
+
+    console.log("Response Status:", response.status);
+    console.log("Response Headers:", response.headers);
+
+    if (
+      response.status === 302 &&
+      response.headers.location === `${PROXY_SMART_API_BASE_URL}/`
+    ) {
+      return { result: "success", message: "Credentials updated successfully" };
+    } else {
+      throw new Error(
+        `Unexpected response from ProxySmart API. Status: ${response.status}`
+      );
+    }
   } catch (error) {
-    console.error("Error updating credentials:", error);
+    console.error("Error updating credentials:", error.message);
     throw new Error("Failed to update credentials");
   }
 };
-
 // Send SMS function
 const sendSMS = async (imei, phone, sms) => {
   try {
@@ -240,19 +300,21 @@ const sendSMS = async (imei, phone, sms) => {
     throw new Error("Failed to send SMS");
   }
 };
+
 // Export the functions for use in other parts of the app
 module.exports = {
   connectDB,
   assignFreeProxy,
   rotateIP,
   getBandwidthUsage,
-  getOvpnSettings,
+  downloadVPNProfile,
   updateCredentials,
   getSpeedTest,
   sendSMS,
+  editCredentials,
   logIpRotation,
   connectionTestResults,
   readSMS,
   showStatus,
-  listActivePorts
+  listActivePorts,
 };
